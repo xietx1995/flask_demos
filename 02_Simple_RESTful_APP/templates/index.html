@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="myElement">
+      Hello, world!
+    </div>
+
+    <button id="get-stores">Get Stores</button>
+
+    <script type="text/javascript">
+      function httpGetAsync(theUrl, callback) {
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.onreadystatechange = function() {
+          if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+            callback(xmlHttp.responseText);
+          }
+        };
+        xmlHttp.open("GET", theUrl, true); // true for asynchronous
+        xmlHttp.send(null);
+      }
+
+      document.getElementById("get-stores").addEventListener("click", () => {
+        httpGetAsync("http://127.0.0.1:5000/store", res => console.log(res));
+      });
+    </script>
+  </body>
+</html>
